@@ -4,6 +4,7 @@ import 'package:firebase_todo_app/view/addlist.dart';
 import 'package:firebase_todo_app/view/home_screen.dart';
 import 'package:firebase_todo_app/view/login_screen.dart';
 import 'package:firebase_todo_app/view/signup_screen.dart';
+import 'package:firebase_todo_app/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -24,12 +25,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
         '/':(context) => LoginScreen(),
         '/register':(context) => SignupScreen(),
         '/home':(context) => HomeScreen(),
-        '/addtask':(context) => AddDetails()
+        '/addtask':(context) => AddDetails(),
+        '/splash':(context) => SplashScreen(),
       },
       theme: ThemeData(
 textTheme: TextTheme(

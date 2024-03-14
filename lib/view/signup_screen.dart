@@ -18,37 +18,35 @@ class _SignupScreenState extends State<SignupScreen> {
 
   bool isloading = false;
 
-  void register()async {
+  void register() async {
     setState(() {
       isloading = true;
     });
-       signupModel = SignupModel(
-                          name: nameController.text,
-                          email: emailController.text,
-                          password: passwordController.text,
-                          createAt: DateTime.now(),
-                          status: 1,
-                        );
-                        try{
-                          await Future.delayed(Duration(seconds: 3));
-                 final userdata = authSarvice.registerUser(signupModel);
-                  if (userdata != null) {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/home', (route) => false);
-                        }
-                        }on FirebaseAuthException catch(e){
-                          setState(() {
-                            
-                            isloading = false;
-                          });
-                          List err = e.toString().split(']');
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(err[1]()))
-                          );
-                        }
-
+    signupModel = SignupModel(
+      name: nameController.text,
+      email: emailController.text,
+      password: passwordController.text,
+      createAt: DateTime.now(),
+      status: 1,
+    );
+    try {
+      await Future.delayed(Duration(seconds: 3));
+      final userdata = authSarvice.registerUser(signupModel);
+      if (userdata != null) {
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      } else {
+        return null;
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        isloading = false;
+      });
+      List err = e.toString().split(']');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(err[1]())),
+      );
+    }
   }
-  
 
   SignupModel signupModel = SignupModel();
   AuthSarvices authSarvice = AuthSarvices();
@@ -58,31 +56,31 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     final themedata = Theme.of(context);
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 77, 87),
+      backgroundColor: const Color.fromARGB(255, 0, 77, 87),
       body: SafeArea(
           child: Stack(
-            children: [
-              Form(
-        key: signKey,
-        child: SingleChildScrollView(
+        children: [
+          Form(
+            key: signKey,
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-             const     Text(
+                  const Text(
                     'Signup To Your Account',
                     style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-            const      SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style:const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: nameController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -91,23 +89,23 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                            borderSide:const BorderSide(color: Colors.white),
+                            borderSide: const BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(7)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        label:
-                            Text('Name', style: themedata.textTheme.displayMedium),
+                        label: Text('Name',
+                            style: themedata.textTheme.displayMedium),
                       ),
                     ),
                   ),
-              const    SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: emailController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -116,23 +114,23 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                            borderSide:const BorderSide(color: Colors.white),
+                            borderSide: const BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(7)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        label:
-                            Text('Email', style: themedata.textTheme.displayMedium),
+                        label: Text('Email',
+                            style: themedata.textTheme.displayMedium),
                       ),
                     ),
                   ),
-         const         SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style:const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       controller: passwordController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -141,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                            borderSide:const BorderSide(color: Colors.white),
+                            borderSide: const BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(7)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -151,7 +149,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-        const          SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   InkWell(
@@ -216,7 +214,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               style: themedata.textTheme.displayMedium)),
                     ),
                   ),
-           const       SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Row(
@@ -232,22 +230,22 @@ class _SignupScreenState extends State<SignupScreen> {
                                   builder: (context) => new LoginScreen()),
                             );
                           },
-                          child:const Text('LogIn',
+                          child: const Text('LogIn',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 139, 242, 255))))
                     ],
                   ),
                 ],
               ),
-        ),
-      ),
+            ),
+          ),
           Visibility(
-                      visible: isloading,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      )),
-            ],
-          )),
+              visible: isloading,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              )),
+        ],
+      )),
     );
   }
 }

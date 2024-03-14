@@ -24,11 +24,10 @@ class AuthSarvices {
         'status': user.status,
       });
       return userData;
-    } else {
-      print('Error');
-    }
+    } 
+       return   null;
   }
-
+  
 
 
  Future<DocumentSnapshot?> loginUser(SignupModel user) async{
@@ -45,12 +44,12 @@ if(usercreantial != null){
 
 
    snap =  await userCollection.doc(usercreantial.user!.uid).get();
-await pref.setString('token',token!);
-await pref.setString('name', snap['name']);
+await pref.setString('token',snap['uid']);
+// await pref.setString('name', snap['name']);
 await pref.setString('email', snap['email']);
 return snap;
 }
-
+   return   null;
  } 
 
 Future<void>logOut()async{
@@ -69,6 +68,7 @@ Future<bool>isloggedin()async {
   }else{
     return true;
   }
+      
 }
 }
 

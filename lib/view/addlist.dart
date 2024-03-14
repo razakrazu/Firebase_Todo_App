@@ -17,11 +17,11 @@ class _AddDetailsState extends State<AddDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(title: Text('ADD DETAILS',style:TextStyle(fontWeight: FontWeight.bold),),backgroundColor: Color.fromARGB(255, 25, 168, 30),centerTitle: true,),
+    appBar: AppBar(title:const Text('ADD DETAILS',style:TextStyle(fontWeight: FontWeight.bold),),backgroundColor:const Color.fromARGB(255, 25, 168, 30),centerTitle: true,),
 
       body: SafeArea(child: Column(
         children: [
-      SizedBox(height: 20,),
+   const   SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
@@ -29,7 +29,7 @@ class _AddDetailsState extends State<AddDetails> {
             border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
             ),
-            label: Text('Name'),
+            label:const Text('Name'),
                    ),
             ),
           ),
@@ -40,7 +40,7 @@ class _AddDetailsState extends State<AddDetails> {
             border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
             ),
-            label: Text('Age'),
+            label:const Text('Age'),
                    ),
             ),
           ),
@@ -51,14 +51,14 @@ class _AddDetailsState extends State<AddDetails> {
             border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
             ),
-            label: Text('Place'),
+            label:const Text('Place'),
                    ),
             ),
           ),
-                SizedBox(height: 30,),
+          const      SizedBox(height: 30,),
       
           ElevatedButton(onPressed: ()async{
-          }, child:Text('Submit')),
+          }, child: const Text('Submit')),
         ],
       )),
       );

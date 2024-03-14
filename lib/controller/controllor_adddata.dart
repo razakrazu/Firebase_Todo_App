@@ -1,8 +1,8 @@
 
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class AddDatas extends GetxController{
   AddDatas get instance => Get.find();
@@ -20,11 +20,10 @@ void addDatas()async {
     'age':age.text,
     'place':place.text
  });
-print('success');
+log('success');
 
-}catch(Error){
-print('error$Error');
+}catch(error){
+log('error$Error');
 }
 }
-
 }

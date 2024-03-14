@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_todo_app/controller/authsarvice.dart';
 import 'package:firebase_todo_app/view/addlist.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              FirebaseAuth.instance.signOut().then((value) =>
+                    final user = FirebaseAuth.instance.currentUser;
+            AuthSarvices().logOut().then((value) =>
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/', (route) => false));
-                      final user = FirebaseAuth.instance.currentUser;
-                 print('${user!.email}');
+                
+                 
             },
             icon: Icon(Icons.logout_sharp)),
       ),
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
           // Get.to(AddDetails());
         },
-        child: Icon(Icons.add),
+        child:const Icon(Icons.add),
       ),
       body: SafeArea(
           child: ListView.builder(
@@ -72,18 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: const Color.fromARGB(255, 180, 180, 180),
               ),
-              child: Column(
+              child:const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.only(top: 20, left: 50),
                     child: Text('Name: amar'),
                   ),
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.only(left: 50),
                     child: Text('aga:30'),
                   ),
-                  const Padding(
+                   Padding(
                     padding: EdgeInsets.only(left: 50),
                     child: Text('place:mankara'),
                   )
