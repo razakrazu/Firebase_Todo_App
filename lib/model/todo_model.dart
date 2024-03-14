@@ -1,14 +1,18 @@
-//  class TodoModel{
-//   final String? id;
-//   final String name;
-//   final String age;
-//   final String place;
+ class TaskModel{
+  final String? id;
+  final String? name;
+  final String? age;
+  final String? place;
+  final int? stutas;
+  DateTime? createAt;
   
-//   TodoModel( {
-//     this.id,
-//    required this.name,
-//    required this.age,
-//    required this.place,
-//     });
+  TaskModel(  {
+    this.id,
+    this.name,
+    this.age,
+   this.place,
+   this.stutas,
+   this.createAt,
+    });
 
-//  }
+ }

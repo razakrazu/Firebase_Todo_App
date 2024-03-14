@@ -24,52 +24,42 @@ class AuthSarvices {
         'status': user.status,
       });
       return userData;
-    } 
-       return   null;
+    }
+    return null;
   }
-  
 
+  Future<DocumentSnapshot?> loginUser(SignupModel user) async {
+    DocumentSnapshot? snap;
+    SharedPreferences pref = await SharedPreferences.getInstance();
 
- Future<DocumentSnapshot?> loginUser(SignupModel user) async{
+    UserCredential usercreantial = await auth.signInWithEmailAndPassword(
+        email: user.email.toString(), password: user.password.toString());
 
- DocumentSnapshot? snap;
-SharedPreferences pref = await SharedPreferences.getInstance();
+    String? token = await usercreantial.user!.getIdToken();
 
-  UserCredential usercreantial = await auth.signInWithEmailAndPassword(email: user.email.toString(), password: user.password.toString());
-
-String ? token = await usercreantial.user!.getIdToken();
-
-
-if(usercreantial != null){
-
-
-   snap =  await userCollection.doc(usercreantial.user!.uid).get();
-await pref.setString('token',snap['uid']);
+    if (usercreantial != null) {
+      snap = await userCollection.doc(usercreantial.user!.uid).get();
+      await pref.setString('token', snap['uid']);
 // await pref.setString('name', snap['name']);
-await pref.setString('email', snap['email']);
-return snap;
-}
-   return   null;
- } 
-
-Future<void>logOut()async{
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  await pref.clear();
- await auth.signOut();
-}
-
-
-
-Future<bool>isloggedin()async {
-  SharedPreferences pref  = await SharedPreferences.getInstance();
-  String? token = await pref.getString('token');
-  if(token == null ){
-    return false;
-  }else{
-    return true;
+      await pref.setString('email', snap['email']);
+      return snap;
+    }
+    return null;
   }
-      
-}
-}
 
+  Future<void> logOut() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.clear();
+    await auth.signOut();
+  }
 
+  Future<bool> isloggedin() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? token = await pref.getString('token');
+    if (token == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}

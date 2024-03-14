@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const MyApp());
 }
 
@@ -21,26 +21,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       initialRoute: '/splash',
       routes: {
-        '/':(context) => LoginScreen(),
-        '/register':(context) => SignupScreen(),
-        '/home':(context) => HomeScreen(),
-        '/addtask':(context) => AddDetails(),
-        '/splash':(context) => SplashScreen(),
+        '/': (context) => const LoginScreen(),
+        '/register': (context) =>const SignupScreen(),
+        '/home': (context) =>const HomeScreen(),
+        '/addtask': (context) => AddDetails(),
+        '/splash': (context) => const SplashScreen(),
       },
       theme: ThemeData(
-textTheme: TextTheme(
-  displayMedium: TextStyle(color: Colors.white,fontSize:18 )
-),
+        textTheme:const TextTheme(
+            displayMedium: TextStyle(color: Colors.white, fontSize: 18)),
         // colorScheme: ColorScheme.fromSeed(seedColor:  Colors.white),
         // useMaterial3: true,
       ),
     );
   }
 }
-

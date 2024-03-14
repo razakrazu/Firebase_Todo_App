@@ -15,22 +15,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title:const Text(
           'TodoList',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromARGB(255, 25, 168, 30),
+        backgroundColor:const  Color.fromARGB(255, 0, 77, 87) ,
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-                    final user = FirebaseAuth.instance.currentUser;
-            AuthSarvices().logOut().then((value) =>
+              final user = FirebaseAuth.instance.currentUser;
+              AuthSarvices().logOut().then((value) =>
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/', (route) => false));
-                
-                 
             },
-            icon: Icon(Icons.logout_sharp)),
+            icon: const Icon(Icons.logout_sharp)),
       ),
       //PreferredSize(preferredSize: Size.fromHeight(80.0),
       //  child: Container(
@@ -57,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
           // Get.to(AddDetails());
         },
-        child:const Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: SafeArea(
           child: ListView.builder(
@@ -74,18 +72,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: const Color.fromARGB(255, 180, 180, 180),
               ),
-              child:const Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 20, left: 50),
                     child: Text('Name: amar'),
                   ),
-                   Padding(
+                  Padding(
                     padding: EdgeInsets.only(left: 50),
                     child: Text('aga:30'),
                   ),
-                   Padding(
+                  Padding(
                     padding: EdgeInsets.only(left: 50),
                     child: Text('place:mankara'),
                   )
