@@ -17,6 +17,35 @@ Future<TaskModel?>createTask(TaskModel task)async{
   }
 }
 
+Stream<List<TaskModel>>getAllDatas(){
+  try{
+return taskCollection.snapshots().map((QuerySnapshot snapshot) {
+  return snapshot.docs.map((DocumentSnapshot doc) {
+return TaskModel.fromJson(doc);
+  }).toList();
+},);
+ 
 
+  }on FirebaseException catch(e){
+print(e);
+throw(e);
+  }
+}
+Future<void> updateTask(TaskModel task)async{
+  try {
+    final taskMap = task.toMap();
+      await taskCollection.doc(task.id).update(taskMap);
+  }on FirebaseException catch(e){
+    print(e.toString());
+  }
+
+}
+Future<void>deleteTask(String? id )async{
+  try{
+    await taskCollection.doc(id).delete();
+  }on FirebaseException catch(e){
+    print(e.toString());
+  }
+}
 
 }

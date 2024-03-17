@@ -6,7 +6,7 @@ class TaskModel{
    final String? age;
   final String? place;
   final int? stutas;
-  DateTime? createAt;
+  Timestamp? createAt;
   
   TaskModel(  {
     this.id,
@@ -23,7 +23,7 @@ factory TaskModel.fromJson(DocumentSnapshot json){
 return TaskModel(
   id: json['id'],
   name: json['name'],
-  createAt: json['createAt'],
+  createAt:json['createAt'],
   stutas:  json['stutas'],
   age: json['age'],
   place: json['place'],
